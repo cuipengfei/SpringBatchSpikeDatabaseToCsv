@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:spring/batch/jobs/job-report.xml",
+        "classpath:spring/batch/jobs/person-table-export-job.xml",
         "classpath:spring/batch/config/context.xml",
         "classpath:spring/batch/config/database.xml",
         "classpath:spring/batch/config/test-context.xml"})

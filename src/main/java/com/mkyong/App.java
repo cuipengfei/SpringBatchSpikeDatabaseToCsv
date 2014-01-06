@@ -13,7 +13,7 @@ public class App {
         String[] springConfig =
                 {
                         "spring/batch/config/context.xml",
-                        "spring/batch/jobs/job-report.xml"
+                        "spring/batch/jobs/person-table-export-job.xml"
                 };
 
         ApplicationContext context =
