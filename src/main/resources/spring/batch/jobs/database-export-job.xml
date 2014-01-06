@@ -9,61 +9,11 @@
     <import resource="../config/context.xml"/>
     <import resource="../config/database.xml"/>
 
-    <bean id="personReader"
-          class="org.springframework.batch.item.database.JdbcCursorItemReader"
-          scope="step">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="sql"
-                  value="SELECT name, hobby, id FROM test.personalinfotable"/>
-        <property name="rowMapper">
-            <bean class="com.spike.springbatch.databasetocsv.PersonRowMapper"/>
-        </property>
-    </bean>
+    <import resource="../readers/person-reader.xml"/>
+    <import resource="../writers/person-writer.xml"/>
 
-    <bean id="personWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
-        <property name="resource" value="file:cvs/person.csv"/>
-        <property name="shouldDeleteIfExists" value="true"/>
-        <property name="lineAggregator">
-            <bean
-                    class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
-                <property name="delimiter" value=","/>
-                <property name="fieldExtractor">
-                    <bean
-                            class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
-                        <property name="names" value="name, hobby, id"/>
-                    </bean>
-                </property>
-            </bean>
-        </property>
-    </bean>
-
-    <bean id="productReader"
-          class="org.springframework.batch.item.database.JdbcCursorItemReader"
-          scope="step">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="sql"
-                  value="SELECT name, price FROM test.product"/>
-        <property name="rowMapper">
-            <bean class="com.spike.springbatch.databasetocsv.ProductRowMapper"/>
-        </property>
-    </bean>
-
-    <bean id="productWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
-        <property name="resource" value="file:cvs/product.csv"/>
-        <property name="shouldDeleteIfExists" value="true"/>
-        <property name="lineAggregator">
-            <bean
-                    class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
-                <property name="delimiter" value=","/>
-                <property name="fieldExtractor">
-                    <bean
-                            class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
-                        <property name="names" value="name, price"/>
-                    </bean>
-                </property>
-            </bean>
-        </property>
-    </bean>
+    <import resource="../readers/product-reader.xml"/>
+    <import resource="../writers/product-writer.xml"/>
 
     <batch:job id="databaseExportJob">
         <batch:step id="personTableExportStep" next="productTableExportStep">
