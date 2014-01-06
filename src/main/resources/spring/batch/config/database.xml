@@ -15,7 +15,4 @@
         <property name="password" value=""/>
     </bean>
 
-    <bean id="transactionManager"
-          class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
-
 </beans>
