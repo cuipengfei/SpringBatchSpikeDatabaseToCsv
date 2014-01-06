@@ -20,7 +20,7 @@ public class App {
                 new ClassPathXmlApplicationContext(springConfig);
 
         JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
-        Job job = (Job) context.getBean("reportJob");
+        Job job = (Job) context.getBean("personTableExportJob");
 
         try {
 

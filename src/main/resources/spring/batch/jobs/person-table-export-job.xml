@@ -20,7 +20,7 @@
         </property>
     </bean>
 
-    <batch:job id="reportJob">
+    <batch:job id="personTableExportJob">
         <batch:step id="step1">
             <batch:tasklet>
                 <batch:chunk reader="personReader"
