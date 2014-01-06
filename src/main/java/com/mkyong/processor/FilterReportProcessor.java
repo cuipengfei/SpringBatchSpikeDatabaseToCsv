@@ -1,14 +1,13 @@
 package com.mkyong.processor;
 
-import com.mkyong.model.Report;
+import com.mkyong.model.Person;
 import org.springframework.batch.item.ItemProcessor;
 
 //run before writing
-public class FilterReportProcessor implements ItemProcessor<Report, Report> {
+public class FilterReportProcessor implements ItemProcessor<Person, Person> {
 
     @Override
-    public Report process(Report item) throws Exception {
+    public Person process(Person item) throws Exception {
         return item;
     }
-
 }
