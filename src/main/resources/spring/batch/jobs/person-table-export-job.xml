@@ -16,7 +16,7 @@
         <property name="sql"
                   value="SELECT name, hobby, id FROM test.personalinfotable"/>
         <property name="rowMapper">
-            <bean class="com.mkyong.PersonRowMapper"/>
+            <bean class="com.spike.springbatch.databasetocsv.PersonRowMapper"/>
         </property>
     </bean>
 

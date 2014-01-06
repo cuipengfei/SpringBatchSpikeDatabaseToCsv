@@ -1,6 +1,6 @@
-package com.mkyong;
+package com.spike.springbatch.databasetocsv;
 
-import com.mkyong.model.Person;
+import com.spike.springbatch.databasetocsv.model.Person;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

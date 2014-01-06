@@ -1,4 +1,4 @@
-package com.mkyong.model;
+package com.spike.springbatch.databasetocsv.model;
 
 public class Person {
 
