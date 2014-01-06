@@ -21,7 +21,6 @@
     </bean>
 
     <bean id="personWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
-        <!-- write to this csv file -->
         <property name="resource" value="file:cvs/person.csv"/>
         <property name="shouldDeleteIfExists" value="true"/>
         <property name="lineAggregator">
@@ -38,11 +37,47 @@
         </property>
     </bean>
 
-    <batch:job id="personTableExportJob">
-        <batch:step id="personTableExportStep">
+    <bean id="productReader"
+          class="org.springframework.batch.item.database.JdbcCursorItemReader"
+          scope="step">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sql"
+                  value="SELECT name, price FROM test.product"/>
+        <property name="rowMapper">
+            <bean class="com.spike.springbatch.databasetocsv.ProductRowMapper"/>
+        </property>
+    </bean>
+
+    <bean id="productWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
+        <property name="resource" value="file:cvs/product.csv"/>
+        <property name="shouldDeleteIfExists" value="true"/>
+        <property name="lineAggregator">
+            <bean
+                    class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+                <property name="delimiter" value=","/>
+                <property name="fieldExtractor">
+                    <bean
+                            class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+                        <property name="names" value="name, price"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <batch:job id="databaseExportJob">
+        <batch:step id="personTableExportStep" next="productTableExportStep">
             <batch:tasklet>
                 <batch:chunk reader="personReader"
                              writer="personWriter"
+                             commit-interval="1">
+                </batch:chunk>
+            </batch:tasklet>
+        </batch:step>
+        <batch:step id="productTableExportStep">
+            <batch:tasklet>
+                <batch:chunk reader="productReader"
+                             writer="productWriter"
                              commit-interval="1">
                 </batch:chunk>
             </batch:tasklet>

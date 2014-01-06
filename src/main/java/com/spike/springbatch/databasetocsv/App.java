@@ -13,13 +13,13 @@ public class App {
         String[] springConfig =
                 {
                         "spring/batch/config/context.xml",
-                        "spring/batch/jobs/person-table-export-job.xml"
+                        "spring/batch/jobs/database-export-job.xml"
                 };
 
         ApplicationContext context = new ClassPathXmlApplicationContext(springConfig);
 
         JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
-        Job job = (Job) context.getBean("personTableExportJob");
+        Job job = (Job) context.getBean("databaseExportJob");
 
         try {
             jobLauncher.run(job, new JobParameters());
