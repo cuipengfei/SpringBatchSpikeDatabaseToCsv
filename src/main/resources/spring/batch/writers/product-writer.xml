@@ -3,7 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
     <bean id="productWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
-        <property name="resource" value="file:cvs/product.csv"/>
+        <property name="resource" value="file:csv/product.csv"/>
         <property name="shouldDeleteIfExists" value="true"/>
         <property name="lineAggregator">
             <bean

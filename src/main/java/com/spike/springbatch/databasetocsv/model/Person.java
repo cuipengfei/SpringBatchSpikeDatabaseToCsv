@@ -1,10 +1,25 @@
 package com.spike.springbatch.databasetocsv.model;
 
-public class Person {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+import static javax.persistence.GenerationType.AUTO;
+import static javax.persistence.GenerationType.IDENTITY;
+
+@Entity(name = "test.personalinfotable")
+public class Person implements Serializable {
 
     String name;
     String hobby;
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     int id;
+
+    public Person() {
+    }
 
     public Person(int id, String name, String hobby) {
         this.id = id;
